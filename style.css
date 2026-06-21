@@ -93,6 +93,10 @@ nav a:hover::after {
 
 /* Hamburger Icon */
 
+#menu-toggle {
+    display: none;
+}
+
 .menu-toggle {
     display: none;
     flex-direction: column;
@@ -295,7 +299,7 @@ section {
 #aboutMe p {
     max-width: 850px;
     width: 100%;
-    font-size: 1.15rem;
+    font-size: 1.3rem;
     color: var(--muted);
 }
 
@@ -580,7 +584,15 @@ footer svg {
         gap: 1rem;
     }
 
- nav {
+    header h1::after {
+        content: " / Dev Portfolio";
+        font-weight: 400;
+        font-size: 0.8rem;
+        color: var(--muted);
+        margin-left: 0.5rem;
+    }
+
+    nav {
         position: absolute;
         top: 100%;
         left: 0;
@@ -615,7 +627,7 @@ footer svg {
         visibility: visible;
     }
 
-   #menu-toggle:checked ~ nav a:nth-child(1) {
+    #menu-toggle:checked ~ nav a:nth-child(1) {
         animation: dropDown .3s ease forwards;
         animation-delay: .1s;
     }
@@ -666,7 +678,7 @@ footer svg {
     }
 
     #aboutMe p {
-        font-size: 1rem;
+        font-size: 24px;
     }
 
     .TechSkills,
