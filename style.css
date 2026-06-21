@@ -91,6 +91,50 @@ nav a:hover::after {
     width: 100%;
 }
 
+/* Hamburger Icon */
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 7px;
+
+    width: 40px;
+    height: 40px;
+
+    cursor: pointer;
+}
+
+.menu-toggle input {
+    display: none;
+}
+
+.menu-toggle span {
+    width: 32px;
+    height: 3px;
+
+    background: var(--primary);
+    border-radius: 999px;
+
+    transition: all 0.3s ease;
+}
+
+/* Top line */
+.menu-toggle input:checked ~ span:nth-child(2) {
+    transform: translateY(10px) rotate(45deg);
+}
+
+/* Middle line */
+.menu-toggle input:checked ~ span:nth-child(3) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+/* Bottom line */
+.menu-toggle input:checked ~ span:nth-child(4) {
+    transform: translateY(-10px) rotate(-45deg);
+}
+
 /* SECTIONS */
 
 section {
@@ -532,13 +576,81 @@ footer svg {
 @media (max-width: 768px) {
 
     header {
-        flex-direction: column;
+        flex-direction: row;
         gap: 1rem;
     }
 
-    nav {
-        flex-wrap: wrap;
-        justify-content: center;
+ nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        background: rgba(15,15,16,.95);
+        backdrop-filter: blur(10px);
+
+        padding: 1rem 0;
+
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    nav a {
+        opacity: 0;
+        transform: translateY(-15px);
+
+        padding: 1rem 2rem;
+    }
+
+    #menu-toggle {
+        display: none;
+    }
+
+    #menu-toggle:checked ~ nav {
+        opacity: 1;
+        visibility: visible;
+    }
+
+   #menu-toggle:checked ~ nav a:nth-child(1) {
+        animation: dropDown .3s ease forwards;
+        animation-delay: .1s;
+    }
+
+    #menu-toggle:checked ~ nav a:nth-child(2) {
+        animation: dropDown .3s ease forwards;
+        animation-delay: .2s;
+    }
+
+    #menu-toggle:checked ~ nav a:nth-child(3) {
+        animation: dropDown .3s ease forwards;
+        animation-delay: .3s;
+    }
+
+    #menu-toggle:checked ~ nav a:nth-child(4) {
+        animation: dropDown .3s ease forwards;
+        animation-delay: .4s;
+    }
+
+    @keyframes dropDown {
+    from {
+        opacity: 0;
+        transform: translateY(-15px) translateX(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) translateX(0);
+    }
+}
+
+    .menu-toggle {
+
+        display: flex;
+        
     }
 
     section {
