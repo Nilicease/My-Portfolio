@@ -50,14 +50,18 @@ header {
     border-bottom: 1px solid rgba(255,255,255,.05);
 }
 
-header h1 {
-    font-size: 1.5rem;
-    font-weight: 700;
+header h1::after {
+    content: " / Dev Portfolio";
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-left: 0.5rem;
 }
 
 nav {
     display: flex;
-    gap: 1rem;
+    gap: 2rem;
+    align-items: center;
 }
 
 a {
@@ -66,8 +70,25 @@ a {
     transition: .25s ease;
 }
 
-nav a:hover {
-    color: var(--primary);
+nav a {
+    position: relative;
+    padding: 0.4rem 0;
+    font-weight: 500;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0%;
+    height: 2px;
+    background: var(--primary);
+    transition: width 0.25s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
 }
 
 /* SECTIONS */
@@ -76,6 +97,19 @@ section {
     min-height: 100vh;
     padding: 6rem 8%;
     border-bottom: 1px solid rgba(255,255,255,.04);
+    animation: fadeSlide 0.5s ease-out;
+}
+
+@keyframes fadeSlide {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* HOME */
@@ -89,7 +123,7 @@ section {
         rgba(15,15,16,.75),
         rgba(15,15,16,.85)
     ),
-    url("home-background.jpeg");
+    url("images/home-background.jpeg");
 
     background-size: cover;
     background-position: center;
@@ -124,6 +158,86 @@ section {
     transform: translateY(-5px);
 }
 
+/* CALL TO ACTION */
+
+#call-to-action {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+}
+
+/* CTA buttons */
+#call-to-action a {
+    position: relative;
+    padding: 0.9rem 1.6rem;
+    border-radius: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(26, 26, 29, 0.6);
+    backdrop-filter: blur(8px);
+    overflow: hidden;
+
+    transition: transform 0.25s ease, background 0.25s ease, border 0.25s ease;
+}
+
+/* Primary CTA (first button) */
+#call-to-action a:first-child {
+    background: var(--primary);
+    color: #0b0b0c;
+    border: none;
+}
+
+/* Hover effects */
+#call-to-action a:hover {
+    transform: translateY(-4px);
+    background: var(--card-hover);
+    border-color: rgba(34, 197, 94, 0.4);
+}
+
+/* Keep primary button hover slightly different */
+#call-to-action a:first-child:hover {
+    background: var(--primary-hover);
+}
+
+/* Subtle shine animation effect */
+#call-to-action a::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.15),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+#call-to-action a:hover::after {
+    left: 120%;
+}
+
+/* Entry animation */
+#call-to-action {
+    animation: fadeUpCTA 0.8s ease forwards;
+}
+
+@keyframes fadeUpCTA {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* ABOUT */
 
 #aboutMe {
@@ -139,6 +253,10 @@ section {
     width: 100%;
     font-size: 1.15rem;
     color: var(--muted);
+}
+
+span {
+    color: var(--primary);
 }
 
 button {
@@ -161,6 +279,16 @@ button:hover {
     background: var(--primary-hover);
     transform: translateY(-2px);
     cursor: pointer;
+}
+
+/* CV modal */
+#openCV {
+    display: none;
+}
+
+#CV {
+
+    display: none;
 }
 
 /* SKILLS */
@@ -241,13 +369,18 @@ button:hover {
 /* PROJECTS */
 
 #projects {
+    display: flex;
+    flex-direction: column;
+}
+
+.projects {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 1.5rem;
     align-content: center;
 }
 
-#projects article {
+.projects article {
     background: var(--card);
     padding: 1.5rem;
 
@@ -257,7 +390,7 @@ button:hover {
     transition: .25s ease;
 }
 
-#projects article:hover {
+.projects article:hover {
     transform: translateY(-5px);
     border-color: rgba(34,197,94,.3);
     box-shadow: 0 0 25px rgba(34,197,94,.08);
@@ -266,6 +399,43 @@ button:hover {
 .projectTitle {
     margin-bottom: 1rem;
     font-size: 1.3rem;
+}
+
+.tech-stack {
+    margin: 1rem 0;
+}
+
+.tech-stack h3 {
+    margin-bottom: .75rem;
+    font-size: .95rem;
+    color: var(--muted);
+}
+
+.tech-stack ul {
+    list-style: none;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+}
+
+.tech-stack li {
+    padding: .4rem .8rem;
+
+    background: rgba(34,197,94,.1);
+    border: 1px solid rgba(34,197,94,.2);
+    border-radius: 999px;
+
+    color: var(--primary);
+    font-size: .85rem;
+    font-weight: 500;
+
+    transition: .25s ease;
+}
+
+.tech-stack li:hover {
+    transform: translateY(-2px);
+    border-color: rgba(34,197,94,.4);
 }
 
 .links {
@@ -286,16 +456,46 @@ button:hover {
 .status {
     display: inline-block;
     margin-top: .75rem;
-
     padding: .3rem .8rem;
-
     border-radius: 999px;
-
-    background: rgba(34,197,94,.15);
-    color: var(--primary);
-
     font-size: .85rem;
     font-weight: 600;
+}
+
+/* Completed */
+.status.complete {
+    background: rgba(34, 197, 94, 0.15);
+    color: #22c55e;
+    border: 1px solid rgba(34, 197, 94, 0.25);
+}
+
+/* In Progress */
+.status.progress {
+    background: rgba(59, 130, 246, 0.15);
+    color: #3b82f6;
+    border: 1px solid rgba(59, 130, 246, 0.25);
+}
+
+/* Archived */
+.status.archived {
+    background: rgba(107, 114, 128, 0.15);
+    color: #9ca3af;
+    border: 1px solid rgba(107, 114, 128, 0.25);
+}
+
+.status::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin-right: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    vertical-align: middle;
+}
+
+#projects_title {
+    display: block;
 }
 
 /* FOOTER */
@@ -319,12 +519,12 @@ footer svg {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #2a2a2d;
+    background: var(--primary);
     border-radius: 20px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--primary);
+    background: var(--primary-hover);
 }
 
 /* MOBILE */
