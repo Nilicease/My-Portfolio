@@ -582,10 +582,15 @@ footer svg {
     header {
         flex-direction: row;
         gap: 1rem;
+        padding: 0.1rem 8%;
+    }
+
+    header h1 {
+        font-size: 2rem;
     }
 
     header h1::after {
-        content: " <br>/ Dev Portfolio";
+        content: " / Dev Portfolio";
         font-weight: 400;
         font-size: 0.8rem;
         color: var(--muted);
