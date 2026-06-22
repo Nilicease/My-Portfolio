@@ -582,11 +582,11 @@ footer svg {
     header {
         flex-direction: row;
         gap: 1rem;
-        padding: 0.1rem 8%;
+        padding: 0.3rem 8%;
     }
 
     header h1 {
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
 
     header h1::after {
