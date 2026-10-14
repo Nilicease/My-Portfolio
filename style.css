@@ -426,6 +426,7 @@ button:hover {
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 1.5rem;
     align-content: center;
+    align-items: start;
 }
 
 .projects article {
@@ -690,4 +691,76 @@ footer svg {
     .SoftSkills {
         min-width: 100%;
     }
+}
+
+.typing {
+    width: 13ch;
+    overflow: hidden;
+    white-space: nowrap;
+
+    border-right: 3px solid #22c55e;
+
+    font-family: monospace;
+    animation:
+        typing 2s steps(24) forwards,
+        blink 0.7s step-end infinite;
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 13.4ch;
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+.image-container {
+    width: 360px;
+    height: 250px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    box-shadow: 0 0 10px #22c55e ;
+    margin-bottom: 10px;
+}
+
+.projectImage {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+summary {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    
+}
+
+summary:hover {
+    color: #16a34a;
+}
+
+details {
+    interpolate-size: allow-keywords;
+}
+
+details::details-content {
+    height: 0;
+    overflow: clip;
+    transition: height 0.3s ease;
+}
+
+details[open]::details-content {
+    height: auto;
 }
